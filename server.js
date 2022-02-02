@@ -27,10 +27,18 @@ app.get('/api/movies', (req, res)=>{
   })
 })
 
-app.get('api/reviews/:movie', (req, res) =>{
+app.get('/api/reviews', (req, res)=>{
+  console.log(`${req.method} request for reviews made.`);
+  db.query('SELECT title, review FROM movies JOIN reviews ON id=movie', (err, result)=>{
+    if(err){throw err}
+    res.json(result);
+  })
+})
+
+app.get('/api/reviews/:movie', (req, res) =>{
   console.log(`${req.method} request for ${req.params.movie} reviews made.`);
   const reqMovie = req.params.movie;
-  db.query(`SELECT title WHERE title=${reqMovie}, review FROM movies JOIN reviews ON id=rev_id;`, (err, result)=>{
+  db.query(`SELECT title, review FROM movies JOIN reviews ON id=movie WHERE title='${reqMovie}';`, (err, result)=>{
     if (err) {throw err}
   // for (let i=0; i<movies.length; i++){
   //   if (reqMovie === movies[i].title.toLowerCase()){
@@ -61,8 +69,8 @@ app.post('/api/add-review', (req, res)=>{
     const revInpt = req.body.review;
     db.query(`SELECT id FROM movies WHERE title='${movieInpt}';`, (err, result)=>{
       if(err){throw err}
-      console.log("id: " + result);
-      const movieID = result;
+      // console.log("id: " + result);
+      const movieID = result[0].id;
       console.log(movieID);
       db.query(`INSERT INTO reviews (movie, review) VALUES (${movieID}, '${revInpt}');`, (err, data)=>{
         if(err){throw err};
