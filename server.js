@@ -9,6 +9,8 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+app.use(express.static('public'));
+
 const db = mysql2.createConnection(
   {
     host: 'localhost',
@@ -19,9 +21,13 @@ const db = mysql2.createConnection(
   console.log(`Connected to the movie database.`)
 );
 
+app.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname, '/public/index.html'))
+);
+
 app.get('/api/movies', (req, res)=>{
   console.log(`${req.method} request for movie list made.`);
-  db.query('SELECT title FROM movies', (err, result)=>{
+  db.query('SELECT title, description FROM movies', (err, result)=>{
     if(err){throw err}
     res.json(result)
   })

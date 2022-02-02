@@ -12,13 +12,17 @@ header {
     align-items: center;
     justify-content: center;
     background-color:lightseagreen;
+}
 
+header h1 {
+    font-size: 2.5rem;
 }
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 0 20px;
 }
 
@@ -28,6 +32,8 @@ form {
     justify-content: space-around;
     width: 20%;
     margin: 20px;
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 2px lightgray; 
     /* align-items: center; */
 }
 
@@ -36,12 +42,24 @@ label {
 }
 
 .choices {
-    width: 20%;
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
-.choices h2 {
-    margin: 20px 0;
+.choices h2,
+button {
+    width: 20%;
+    margin: 20px 0 10px 0;
+    padding: 5px;
+    text-align: center;
+    background-color:rgb(240, 236, 236);
+    box-shadow: inset 0 0 3px 5px lightsteelblue, 2px 2px gray;
+}
+
+button {
+    width: auto;
+    border-color: lightsteelblue;
 }
 
 .frm {
@@ -50,4 +68,48 @@ label {
 
 h2.frm{
     align-self: center;
+}
+
+.start,
+.disp-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    margin: 20px;
+    padding: 20px;
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 2px lightgray; 
+}
+
+.disp-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.start {
+    margin-top: 10rem;
+}
+
+.card {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 20px;
+    padding: 20px;
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 2px lightgray; 
+}
+
+.rev-text {
+    text-align: center;
+    font-style: italic;
+    color: gray;
 }
