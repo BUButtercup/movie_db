@@ -14,9 +14,9 @@ app.use(express.static('public'));
 const db = mysql2.createConnection(
   {
     host: 'localhost',
-    user: 'root',
-    password: '!3av3Spac3',
-    database: 'movie_db'
+    user: process.env.ACTIVE_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.CURRENT_DB
   },
   console.log(`Connected to the movie database.`)
 );
