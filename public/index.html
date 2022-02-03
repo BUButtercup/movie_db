@@ -14,7 +14,7 @@
             <h2 id="show-all">Show ALL Movies</h2>
             <h2 id="find-movie">Find a Movie</h2>
             <h2 id="rev-movie">Review a Movie</h2>
-            <h2 id="find-review">Find a Review</h2>
+            <h2 id="find-review">Find Movie Reviews</h2>
         </div>
         <!-- <nav>
             <a href=""></a>
@@ -26,22 +26,33 @@
         <div class="start" id="hide">
             <h2>Choose an action above to begin!</h2>
         </div>
+        <div id="add-box">
+            <h3>Can't find what you're looking for?</h3>
+            <button id="add-mov">Add a Movie</button>
+        </div>
         <form action="" id="find">
             <h2 class="frm">Find a Movie</h2>
-            <label for="title" class="frm">Movie Title</label>
+            <!-- <label for="title" class="frm">Movie Title</label> -->
             <input type="text" name="title" placeholder="Type the title here..." class="frm" id="find-inpt">
             <button type="submit" class="frm">Find it!</button>
         </form>
+        <form action="" id="add-movie">
+            <h2 class="frm">Add a Movie to the List</h2>
+            <!-- <label for="add-title" class="frm">Movie Title</label> -->
+            <input type="text" name="add-title" placeholder="Type the title here..." class="frm" id="add-title-inpt">
+            <textarea name="add" id="desc-inpt" cols="30" rows="10" placeholder="Type a description of the movie here..."class="frm"></textarea>
+            <button type="submit"class="frm">Add it!</button>
+        </form>
         <form action="" id="review">
             <h2 class="frm">Review a Movie</h2>
-            <label for="title" class="frm">Movie Title</label>
-            <input type="text" name="title" placeholder="Type the title here..." class="frm" id="review-inpt">
-            <textarea name="review" id="" cols="30" rows="10" placeholder="Type your review here..."class="frm"></textarea>
+            <!-- <label for="title" class="frm">Movie Title</label> -->
+            <input type="text" name="title" placeholder="Type the title here..." class="frm" id="rev-title-inpt">
+            <textarea name="review" id="rev-inpt" cols="30" rows="10" placeholder="Type your review here..."class="frm"></textarea>
             <button type="submit"class="frm">Review it!</button>
         </form>
         <form action="" id="find-rev">
             <h2 class="frm">Find Reviews</h2>
-            <label for="title" class="frm">Movie Title</label>
+            <!-- <label for="title" class="frm">Movie Title</label> -->
             <input type="text" name="title" placeholder="Type the title here..." class="frm" id="find-rev-inpt">
             <button type="submit" class="frm">Find it!</button>
         </form>
