@@ -1,5 +1,5 @@
+require('dotenv').config();
 const express = require('express');
-const fs = require('fs');
 const mysql2 = require('mysql2');
 const path = require('path');
 
@@ -55,8 +55,6 @@ app.get('/api/reviews/:movie', (req, res) =>{
   const reqMovie = req.params.movie;
   db.query(`SELECT title, review FROM movies JOIN reviews ON id=movie WHERE title='${reqMovie}';`, (err, result)=>{
     if (err) {throw err}
-  // for (let i=0; i<movies.length; i++){
-  //   if (reqMovie === movies[i].title.toLowerCase()){
     res.json(result)
     console.log(result);
     
