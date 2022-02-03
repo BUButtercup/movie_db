@@ -1,5 +1,5 @@
+require('dotenv').config();
 const express = require('express');
-const fs = require('fs');
 const mysql2 = require('mysql2');
 const path = require('path');
 
@@ -14,9 +14,9 @@ app.use(express.static('public'));
 const db = mysql2.createConnection(
   {
     host: 'localhost',
-    user: 'root',
-    password: '!3av3Spac3',
-    database: 'movie_db'
+    user: process.env.ACTIVE_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.CURRENT_DB
   },
   console.log(`Connected to the movie database.`)
 );
@@ -55,8 +55,6 @@ app.get('/api/reviews/:movie', (req, res) =>{
   const reqMovie = req.params.movie;
   db.query(`SELECT title, review FROM movies JOIN reviews ON id=movie WHERE title='${reqMovie}';`, (err, result)=>{
     if (err) {throw err}
-  // for (let i=0; i<movies.length; i++){
-  //   if (reqMovie === movies[i].title.toLowerCase()){
     res.json(result)
     console.log(result);
     
