@@ -33,6 +33,15 @@ app.get('/api/movies', (req, res)=>{
   })
 })
 
+app.get('/api/movies/:title', (req, res)=>{
+  console.log(`${req.method} request for the movie ${req.params.title} made.`);
+  db.query(`SELECT title, description FROM movies WHERE title="${req.params.title}"`, (err, result)=>{
+    if(err){throw err}
+    res.json(result)
+    console.log(result)
+  })
+})
+
 app.get('/api/reviews', (req, res)=>{
   console.log(`${req.method} request for reviews made.`);
   db.query('SELECT title, review FROM movies JOIN reviews ON id=movie', (err, result)=>{
@@ -54,20 +63,25 @@ app.get('/api/reviews/:movie', (req, res) =>{
   })
 })
 
-app.post('/api/add-movie', (req, res)=>{
+app.post('/api/movies/add-movie', (req, res)=>{
   console.log(`${req.method} request made to add a movie.`);
-  if ((!req.body.title) || (!req.body.description)){
+  console.log(req.body);
+  if ((!req.body.movie) || (!req.body.description)){
     res.send('You have to include both a title and description to add a movie to the database.')
   } else {
-    const titleInpt = req.body.title;
+    const titleInpt = req.body.movie;
     const descInpt = req.body.description;
     db.query(`INSERT INTO movies (title, description) VALUES ('${titleInpt}', '${descInpt}');`);
-    res.send(`${titleInpt} was added!`);
+    const response = {
+      status: `${titleInpt} was added!`
+    }
+    res.json(response);
   }
 })
 
 app.post('/api/add-review', (req, res)=>{
   console.log(`${req.method} request made to add a review.`);
+  console.log(req.body);
   if ((!req.body.movie) || (!req.body.review)){
     res.send('You have to include both a movie and review to add a review to the database.')
   } else {
@@ -80,9 +94,14 @@ app.post('/api/add-review', (req, res)=>{
       console.log(movieID);
       db.query(`INSERT INTO reviews (movie, review) VALUES (${movieID}, '${revInpt}');`, (err, data)=>{
         if(err){throw err};
-        console.log(data);
+        // console.log(data);
       });
-      res.send(`Your ${movieInpt} review was added!`);
+      const response = {
+        status: `Your ${movieInpt} review was added!`
+      }
+      res.json(response);
+      // console.log(res);
+      // return response;
     })
   }
 })
